@@ -1,2 +1,2 @@
-Git is of great use.
+Git is of great usage.
 Git is a distributed version control system.
