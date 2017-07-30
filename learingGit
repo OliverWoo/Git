@@ -1,0 +1,7 @@
+git init 在任意文件夹执行，则将其加入Git可以管理的仓库
+
+git add file 将文件添加到仓库
+
+git commit -m "A message digest" 将文件提交到仓库
+
+
