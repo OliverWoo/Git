@@ -19,4 +19,4 @@ git reset --hard HEAD^ 恢复到上一个版本
 
 git reset --hard [commitID] 恢复到指定的版本
 
-git reflog 列举历史命令
+git reflog 列举历史版本号
