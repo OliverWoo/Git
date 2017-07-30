@@ -20,3 +20,11 @@ git reset --hard HEAD^ 恢复到上一个版本
 git reset --hard [commitID] 恢复到指定的版本
 
 git reflog 列举历史版本号
+
+工作区(working directory)即为当前的目录
+
+工作区目录下.git文件为版本库，其中包括暂存区(also called stage or index)
+其中还有自动创建的分支master，以及指向master的HEAD指针
+git add 把文件修改添加到暂存区
+git commit 把暂存区的内容提交到当前分支
+
