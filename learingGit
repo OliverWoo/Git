@@ -4,4 +4,9 @@ git add file 将文件添加到仓库
 
 git commit -m "A message digest" 将文件提交到仓库
 
+git status 查看仓库的状态，包括修改和提交等
+
+git diff [file] 查看文件具体改变内容
+
+提交修改的步骤与提交新文件的步骤一致。
 
