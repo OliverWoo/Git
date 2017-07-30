@@ -28,3 +28,6 @@ git reflog 列举历史版本号
 git add 把文件修改添加到暂存区
 git commit 把暂存区的内容提交到当前分支
 
+Git追踪并管理文件的修改而不是文件本身，每一次的修改除非经过 git add/commit
+否则不会提交到分支
+
