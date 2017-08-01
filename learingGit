@@ -38,4 +38,7 @@ git checkout -- intro.txt 撤销工作区的修改（包括：1，修改后还没放到暂存区；2，添
 git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 可以利用git checkout -- intro.txt撤销工作区的修改
 
+删除文件
+删除工作区的文件，则与版本库不再一致，若确实删除则git rm file & git commit
+否则 git checkout -- file恢复文件，用版本库中的替换工作区中的
 
