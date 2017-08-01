@@ -31,3 +31,11 @@ git commit 把暂存区的内容提交到当前分支
 Git追踪并管理文件的修改而不是文件本身，每一次的修改除非经过 git add/commit
 否则不会提交到分支
 例如：mod 1 --> git add --> mod 2 --> git commit 只会将 mod 1 的修改提交到版本库
+
+撤销修改
+git checkout -- intro.txt 撤销工作区的修改（包括：1，修改后还没放到暂存区；2，添加到暂存区后，又作修改），回退到最近一次git add或git commit时的状态
+
+git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
+可以利用git checkout -- intro.txt撤销工作区的修改
+
+
