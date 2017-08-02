@@ -54,3 +54,4 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 	推送本地的提交到远端：git push originGit master
 		    	
 
+克隆远程库到本地: git clone https://github.com/OliverWoo/Git.git
