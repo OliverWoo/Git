@@ -55,3 +55,12 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 		    	
 
 克隆远程库到本地: git clone https://github.com/OliverWoo/Git.git
+
+创建分支时，例如dev，dev与master指向了相同的提交版本，但是HEAD指针指向了dev，之后的修改和提交即
+	针对dev分支，master不变。可以把分支合并到master，然后将分支删除。
+
+	git checkout -b dev 创建分支并切换；相当于 git branch dev && git checkout dev
+	git branch 查看当前分支，当前分支有*前缀
+	git merge dev 把分支dev合并到当前分支
+	git branch -d dev 删除分支dev
+
