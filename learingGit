@@ -71,3 +71,9 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 
 		git log --graph --pretty=oneline --abbrev-commit 显示分支合并图，提交信息单行
 
+分支管理策略
+		合并分支时Git通常采用Fast Forward模式，master直接指向了待合并分支的最近一次提交
+		如果在合并后删除分支，则丢失分支信息
+		
+		禁用Fast Forward模式，在合并时就会生成新的commit
+		git merge --no-ff -m "Merge with --no-ff option"
