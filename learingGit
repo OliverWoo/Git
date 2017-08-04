@@ -77,3 +77,6 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 		
 		禁用Fast Forward模式，在合并时就会生成新的commit
 		git merge --no-ff -m "Merge with --no-ff option"
+		因为生成新的提交，所以带有 -m 参数
+
+		实际开发过程中，master分支稳定，在dev分支开发，然后不定时合并
