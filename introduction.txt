@@ -1,3 +1,2 @@
-Git is of great use.
-Git is happy to learn.
 Git is a distributed version control system.
+Git is easy to learn.
