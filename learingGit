@@ -82,4 +82,12 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 		实际开发过程中，master分支稳定，在dev分支开发，然后不定时合并
 
 		Bug分支:每个bug都可以通过一个新的临时分支来修复，然后合并分支并删除临时分支
-		
+			工作在当前分支还未提交，但是需要处理bug
+					git stash 暂时保存工作现场
+			确认在哪个分支修复bug，然后从分支创建临时分支，修复后提交，然后切换回来合并，最后删除临时分支
+			回到原来的工作分支，恢复现场
+					git stash list 列举保存的现场
+					git stash pop 恢复现场，并删除保存的现场
+					git stash apply [stash] 恢复但不删除
+					git stash drop [stash] 删除现场
+
