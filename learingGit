@@ -43,8 +43,8 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 否则 git checkout -- file恢复文件，用版本库中的替换工作区中的
 
 远程仓库
-	添加远程库：按照默认选项在GitHub上创建一个新repo,Git.git，与本地仓库
-		    关联
+	查看远程库：git remote [-v]
+	添加远程库：按照默认选项在GitHub上创建一个新repo,Git.git，与本地仓库关联
 		    git remote add originGit git@github.com:OliverWoo/Git.git
 		    其中远程库的名字即为 originGit
 
@@ -53,6 +53,16 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 	
 	推送本地的提交到远端：git push originGit master
 		    	
+	在本地创建分支与远程分支对应：git checkout -b branch-name origin/branch-name
+	建立本地分支与远程分支的关联：git branch --set-upstream branch-name origin/branch-name
+
+多人协作流程
+	1，试图用 git push origin dev 推送己方修改
+	2，如果推送失败，则说明远程分支比己方分支新，需要 git pull 试图合并
+	3，如果合并有冲突，则解决冲突，然后在本地提交
+	4，没有冲突或者解决冲突后，git push origin branch-name 推送
+	5，如果 git pull 提示"no tracking info"，则说明本地分支与与远程分支未关联，需要建立关联
+	
 
 克隆远程库到本地: git clone https://github.com/OliverWoo/Git.git
 
