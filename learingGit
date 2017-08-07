@@ -91,3 +91,6 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 					git stash apply [stash] 恢复但不删除
 					git stash drop [stash] 删除现场
 
+		Feature分支：在分支中开发新功能，然后合并到主分支，删除分支
+				新功能开发完毕并已经提交到分支，若要取消新功能开发，则要强制删除分支
+					git branch -D feature # -d 参数已经不能解决问题了
