@@ -104,3 +104,25 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 		Feature分支：在分支中开发新功能，然后合并到主分支，删除分支
 				新功能开发完毕并已经提交到分支，若要取消新功能开发，则要强制删除分支
 					git branch -D feature # -d 参数已经不能解决问题了
+
+标签管理
+		标签是版本库的快照，，实际指向某个commit的指针
+
+		打标签
+			git tag tagName
+			git tag tagName commitID
+			git tag -a tagName -m "message" commitID
+			git tag -s tagName -m "message" commitID # 用私钥签名一个标签，签名采用PGP签名
+		
+		查看标签
+			git tag
+			git show tagName
+
+		删除标签
+			git tag -d tagName
+			若标签已经推送到远程，则先从本地删除，然后
+			git push origin :refs/tags/tagName
+			
+		推送某个标签到远程仓库
+			git push origin tagName
+			git push origin --tags # 一次性推送全部尚未推送到远端的本地标签
