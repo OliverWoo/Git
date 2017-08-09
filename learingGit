@@ -126,3 +126,9 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到工作区，然后又
 		推送某个标签到远程仓库
 			git push origin tagName
 			git push origin --tags # 一次性推送全部尚未推送到远端的本地标签
+
+忽略特殊文件
+		在Git工作区的根目录下创建 .gitignore 文件，然后把要忽略的文件名填入
+
+别名
+		git config --global alias.last "log -1"
