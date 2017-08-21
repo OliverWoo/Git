@@ -1,9 +1,17 @@
+配置
+	git config --global user.name "name"
+	git config --global user.email "email"
+	git config --global color.ui auto
+
 git init 在任意文件夹执行，则将其加入Git可以管理的仓库
 
+git add .    将所有文件添加到仓库
 git add file 将文件添加到仓库
 
 git commit -m "A message digest" 将文件提交到仓库
 
+可视化工具
+	gitk
 git status 查看仓库的状态，包括修改和提交等
 
 git diff [file] 查看文件具体改变内容
@@ -55,6 +63,8 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 		    	
 	在本地创建分支与远程分支对应：git checkout -b branch-name origin/branch-name
 	建立本地分支与远程分支的关联：git branch --set-upstream branch-name origin/branch-name
+
+拉取pull操作把远程版本库的内容更新到本地仓库，会覆盖本地内容
 
 多人协作流程
 	1，试图用 git push origin dev 推送己方修改
