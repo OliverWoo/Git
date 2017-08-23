@@ -3,7 +3,7 @@
 	git config --global user.email "email"
 	git config --global color.ui auto
 
-git init 在任意文件夹执行，则将其加入Git可以管理的仓库
+git init 在任意文件夹执行，则将其加入Git可以管理的本地仓库
 
 git add .    将所有文件添加到仓库
 git add file 将文件添加到仓库
@@ -11,7 +11,8 @@ git add file 将文件添加到仓库
 git commit -m "A message digest" 将文件提交到仓库
 
 可视化工具
-	gitk
+	gitk 查看分支历史
+
 git status 查看仓库的状态，包括修改和提交等
 
 git diff [file] 查看文件具体改变内容
@@ -22,6 +23,8 @@ git log [--pretty=oneline] 显示提交日志
 日志中的长串十六进制数字即为版本号
 HEAD表示当前版本，HEAD^表示上一个版本，HEAD^^表示再上一个
 HEAD~100表示往上100个版本
+~<n> refers to the <n>th grandparent
+^<n> refers to the <n>th parent. A commit can hava more than one parents in a merge commit.
 
 git reset --hard HEAD^ 恢复到上一个版本
 
@@ -57,7 +60,9 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 		    其中远程库的名字即为 originGit
 
 	推送本地库内容到远程库：git push -u originGit master
-			 其中master为本地分支
+			 其中master为本地分支, when specifying -u option, one can omit the branch name
+			 the next time. When pushing to a vacant remote, one must specify the remote 
+			 repo and branch name.
 	
 	推送本地的提交到远端：git push originGit master
 		    	
@@ -65,6 +70,9 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 	建立本地分支与远程分支的关联：git branch --set-upstream branch-name origin/branch-name
 
 拉取pull操作把远程版本库的内容更新到本地仓库，会覆盖本地内容
+Synchronize a local repository with the newly updated remote repository.
+	
+	git pull <repo>  <refSpec>... # If no repo specified, pull from "origin"
 
 多人协作流程
 	1，试图用 git push origin dev 推送己方修改
@@ -75,6 +83,7 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 	
 
 克隆远程库到本地: git clone https://github.com/OliverWoo/Git.git
+				  git clone <repo> <directory>  # Clone into a new dir
 
 创建分支时，例如dev，dev与master指向了相同的提交版本，但是HEAD指针指向了dev，之后的修改和提交即
 	针对dev分支，master不变。可以把分支合并到master，然后将分支删除。
@@ -82,9 +91,13 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 	git checkout -b dev 创建分支并切换；相当于 git branch dev && git checkout dev
 	git branch 查看当前分支，当前分支有*前缀
 	git merge dev 把分支dev合并到当前分支
+	Different branches can be merged into any one branch provided that they belong to the same repo.
+
 	git branch -d dev 删除分支dev
 
 分支冲突
+		Everything above "=====" is your local content, and everything below comes from the remote branch
+
 		从主分支创建并切换到新分支，然后修改并提交
 		切换回到主分支，然后修改并提交
 		把新分支合并到主分支时发生冲突，必须手动解决
@@ -103,7 +116,13 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 
 		Bug分支:每个bug都可以通过一个新的临时分支来修复，然后合并分支并删除临时分支
 			工作在当前分支还未提交，但是需要处理bug
+
 					git stash 暂时保存工作现场
+					还未提交的修改内容和新添加的文件，留在暂存区或者工作区的情况下切换到新分支时
+					会把未提交的内容带到新分支。未提交的changes might conflict with the newly switched 
+					branch, and a checkout/switch to the other branch would fail. You have to commit or stash 
+					changes before switching.
+
 			确认在哪个分支修复bug，然后从分支创建临时分支，修复后提交，然后切换回来合并，最后删除临时分支
 			回到原来的工作分支，恢复现场
 					git stash list 列举保存的现场
