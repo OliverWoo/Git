@@ -32,7 +32,7 @@ git reset --hard [commitID] 恢复到指定的版本
 
 git reflog 列举历史版本号
 
-工作区(working directory)即为当前的目录
+工作区(working directory)即为当前目录
 
 工作区目录下.git文件为版本库，其中包括暂存区(also called stage or index)
 其中还有自动创建的分支master，以及指向master的HEAD指针
@@ -71,9 +71,14 @@ git reset HEAD intro.txt 撤销git add,把暂存区的修改撤销，回退到�
 
 拉取pull操作把远程版本库的内容更新到本地仓库，会覆盖本地内容
 Synchronize a local repository with the newly updated remote repository.
-	
-	git pull <repo>  <refSpec>... # If no repo specified, pull from "origin"
+If the local bran has changes that are not present in the remote bran, a merge is executed and a merge
+commit created. Might need to resolve conflicts.
 
+	git pull <repo>  <refSpec>... # If no repo specified, pull from "origin"
+	
+	git pull automatically merges changes into the local repo.
+	git fetch only downloads changes from the remote repo. Then one can merge by FETCH_HEAD
+	
 多人协作流程
 	1，试图用 git push origin dev 推送己方修改
 	2，如果推送失败，则说明远程分支比己方分支新，需要 git pull 试图合并
@@ -91,6 +96,7 @@ Synchronize a local repository with the newly updated remote repository.
 	git checkout -b dev 创建分支并切换；相当于 git branch dev && git checkout dev
 	git branch 查看当前分支，当前分支有*前缀
 	git merge dev 把分支dev合并到当前分支
+	git merge <commit>
 	Different branches can be merged into any one branch provided that they belong to the same repo.
 
 	git branch -d dev 删除分支dev
@@ -107,7 +113,25 @@ Synchronize a local repository with the newly updated remote repository.
 分支管理策略
 		合并分支时Git通常采用Fast Forward模式，master直接指向了待合并分支的最近一次提交
 		如果在合并后删除分支，则丢失分支信息
+		When merging a "bugfix" branch into master, 
+		if master has not changed since checking out a bugfix bran,
+		Git will move the master position to the latest position of bugfix, i.e. "fast-forward";
+		if master has been updated by others since checkout, combine changes from both brans and 
+		then create a "merge commit". The master position will be updated to the newly created 
+		merge commit.
+
+		When rebasing a bugfix bran to master, commits from bugfix will be replayed and appended to
+		the end of the master bran.
+		In the event of a conflict when appending commits, fix the conflict before proceeding with 
+		rebasing the other commits.
+		Rebase does not move the position of "master".
+		In any case, one can do a fast-forward or a clean merge from bugfix to master after rebasing.
 		
+		git rebase master
+		git rebase --continue
+		git rebase --abort
+		git rebase --skip
+
 		禁用Fast Forward模式，在合并时就会生成新的commit
 		git merge --no-ff -m "Merge with --no-ff option"
 		因为生成新的提交，所以带有 -m 参数
